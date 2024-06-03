@@ -37,7 +37,8 @@ def ItemList(request):
         item_info = {
             'name': item.name,
             'price': sales_item.price,
-            'quantity': inventory_item.quantity
+            'picture': f'https://django-alpha-eosin.vercel.app/item_picture/{item.name}/',
+            'quantity': inventory_item.quantity,
         }
         item_data.append(item_info)
     
