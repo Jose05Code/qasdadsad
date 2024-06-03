@@ -1,11 +1,12 @@
 from django.shortcuts import get_object_or_404
 from django.http import FileResponse
-from .models import Item, SalesItem, InventoryItem  # Import the missing models
+from .models import Item
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
+from .models import SalesItem, InventoryItem
 
 @csrf_exempt
-def send_picture(request, name):
+def item_pictures(request, name):
     # Obtén el item por nombre o devuelve un error 404 si no se encuentra
     item = get_object_or_404(Item, name=name)
 
@@ -36,7 +37,6 @@ def ItemList(request):
         item_info = {
             'name': item.name,
             'price': sales_item.price,
-            'picture': item.picture.url,
             'quantity': inventory_item.quantity
         }
         item_data.append(item_info)
