@@ -14,7 +14,7 @@ def item_pictures(request, name):
     picture = item.picture
 
     # Abre la imagen en modo binario
-    img = open(picture.path, 'rb')
+    img = picture.open('rb')
 
     # Devuelve la imagen como una respuesta HTTP
     return FileResponse(img)
