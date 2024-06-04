@@ -116,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-#S3 BUCKET CONFIG
+#S3 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 AWS_ACCESS_KEY_ID = getenv('AWS_ACCESS_KEY_ID')
