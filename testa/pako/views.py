@@ -47,8 +47,13 @@ def register_view(request):
         data = json.loads(request.body)
         username = data.get('username')
         password = data.get('password')
-        user = User.objects.create_user(username=username, password=password)
-        return JsonResponse({'message': 'Usuario creado con éxito'})
+        user, created = User.objects.get_or_create(username=username)
+        if created:
+            user.set_password(password)
+            user.save()
+            return JsonResponse({'message': 'Usuario creado con éxito'})
+        else:
+            return JsonResponse({'error': 'El nombre de usuario ya existe'}, status=400)
     else:
         return JsonResponse({'error': 'Método no permitido'}, status=405)
 
